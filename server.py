@@ -1,5 +1,3 @@
-# Tcp Chat server
-
 import socket
 import select
 
@@ -14,7 +12,6 @@ def broadcast_data(sock, message):
                 print(str(socket) + " has disconnected")
                 socket.close()
                 CONNECTION_LIST.remove(socket)
-
 
 if __name__ == "__main__":
 

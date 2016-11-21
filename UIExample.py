@@ -1,7 +1,21 @@
 from tkinter import *
 import socket
 import select
-fields = 'Username', 'Server Address', 'Port'
+loginFields = 'Username', 'Server Address', 'Port'
+chatField = 'output'
+
+def spawnChat(root, fields):
+    row = Frame(root)
+    ent = Entry(row)
+    row.pack(side=TOP, fill=X, padx=5, pady=5)
+    ent.pack(side=RIGHT, expand=YES, fill=X)
+
+
+def spawnChatWindow():
+    t = Toplevel()
+    l = Label(t, text="This is a new window")
+    l.pack(side="top", fill="both", expand=True, padx=100, pady=100)
+    spawnChat(t, chatFields)
 
 
 def fetch(entries):
@@ -20,14 +34,15 @@ def fetch(entries):
 
     try:
         connection.connect((host, port))
-    except:
+    except Exception as e:
+        print(str(e))
         print('Connection Failed')
         sys.exit()
 
-    print('Connected...')
+    spawnChatWindow()
 
 
-def makeform(root, fields):
+def spawnLogin(root, fields):
     entries = []
     for field in fields:
         row = Frame(root)
@@ -42,7 +57,7 @@ def makeform(root, fields):
 
 if __name__ == '__main__':
     root = Tk()
-    items = makeform(root, fields)
+    items = spawnLogin(root, loginFields)
 
     root.bind('<Return>', (lambda event, e=items: fetch(e)))
     cButton = Button(root, text='Connect', command=(lambda e=items: fetch(e)))
