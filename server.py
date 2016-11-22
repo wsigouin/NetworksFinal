@@ -50,6 +50,8 @@ if __name__ == "__main__":
                         data = data.decode()
                         data = (str(sock.getpeername()) + " says: " + data)
                         broadcast_data(sock, data)
+                        print(data)
+
 
                 except Exception as e:
                     print("Client (%s, %s) is offline" % addr)

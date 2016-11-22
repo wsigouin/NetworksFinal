@@ -6,7 +6,6 @@ if __name__ == "__main__":
 
     host = 'localhost'
     port = 5000
-    chatroom = 0
 
     connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     connection.settimeout(2)
